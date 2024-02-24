@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: my-pipeline-
+spec:
+  pipelineRef:
+    name: my-pipeline
+  podTemplate:
+    securityContext:
+      fsGroup: 65532
+  params:
+  - name: repo-url
+    value: https://github.com/leandronsp/chespirito.git
+  - name: revision
+    value: main
+  workspaces:
+  - name: shared-data
+    persistentVolumeClaim:
+      claimName: pvc-07864675bf
