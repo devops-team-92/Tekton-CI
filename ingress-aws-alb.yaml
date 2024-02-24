@@ -1,0 +1,22 @@
+piVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/inbound-cidrs: 24.239.0.0/16,20.207.73.82/32
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/target-type: 'ip'
+  name: tekton-event
+  namespace: default
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: el-github-pr
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
