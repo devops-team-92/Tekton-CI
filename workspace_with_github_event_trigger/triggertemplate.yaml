@@ -1,0 +1,26 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-pr-trigger-template
+spec:
+  params:
+  - name: revision
+    default: main
+  - name: repo-url
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: my-pipeline-
+    spec:
+      pipelineRef:
+        name: my-pipeline
+      workspaces:
+      - name: shared-data
+        persistentVolumeClaim:
+          claimName: pvc-07864675bf
+      params:
+      - name: repo-url
+        value: $(tt.params.repo-url)
+      - name: revision
+        value: $(tt.params.revision)
