@@ -1,12 +1,4 @@
 apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
-metadata:
-  generateName: hello-pipeline-
-spec:
-  pipelineRef:
-    name: hello-pipeline
-[root@ip-172-31-31-155 github-events]# cat task2.yaml
-apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: list-source
