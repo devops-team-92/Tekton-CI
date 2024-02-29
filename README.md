@@ -1,4 +1,8 @@
 # tekton
+Install Tekton
+```
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/interceptors.yaml
+```
 Install Tekton Triggers
 ```
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
